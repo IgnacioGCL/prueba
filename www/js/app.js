@@ -24,8 +24,24 @@ angular.module('starter', ['ionic'])
 
 })
 
-.controller('AlertaCtrl',function($scope){
-    $scope.alerta = function(){
-        alert('Esto creo que funciona');
-    }
+.controller('ShowCtrl',function($scope){
+    $scope.estado=false;
+
+    $scope.mensajes = [{
+        escritor: 'Yo',
+        texto: 'Buenos días'
+    }];
+
+    $scope.escribe = function(){
+        $scope.mensajes.push({escritor:'Ignacio', texto: $scope.mensaje});
+    };
+
+    $scope.aparece = function(){
+        $scope.estado=true;
+    };
+
+    $scope.esconde = function(){
+        $scope.estado=false;
+        $scope.escribe();
+    };
 })
