@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -24,10 +24,11 @@ angular.module('starter', ['ionic'])
 
 })
 
-.controller('ShowCtrl',function($scope){
+.controller('ShowCtrl',function($scope,$cordovaGeolocation){
     $scope.estado=false;
 
     $scope.mensajes = [{
+        id: 1,
         escritor: 'Yo',
         texto: 'Buenos días'
     }];
@@ -43,5 +44,19 @@ angular.module('starter', ['ionic'])
     $scope.esconde = function(){
         $scope.estado=false;
         $scope.escribe();
+    };
+
+    var posOptions = {timeout: 1000, enableHighAccuracy: false};
+
+
+    // Función que permite obtener la localización. Para cualquier duda mirar: http://ngcordova.com/docs/plugins/geolocation/
+    $scope.dondeEstoy = function(){
+
+    $cordovaGeolocation.getCurrentPosition(posOptions).then(function(position) {
+          var latitud = position.coords.latitude;
+          var longitud = position.coords.longitude;
+          alert('Estoy en la posición:'+latitud+' grados latitud'+' y '+longitud+' grados longitud');
+    })
+
     };
 })
