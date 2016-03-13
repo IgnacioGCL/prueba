@@ -24,17 +24,21 @@ angular.module('starter', ['ionic','ngCordova'])
 
 })
 
+//TODO: Crear un controlador aparte para la geolocalización
+//La geolocalización está incluida en el controlador ShowCtrl
+
 .controller('ShowCtrl',function($scope,$cordovaGeolocation){
     $scope.estado=false;
 
     $scope.mensajes = [{
-        id: 1,
-        escritor: 'Yo',
-        texto: 'Buenos días'
     }];
 
     $scope.escribe = function(){
-        $scope.mensajes.push({escritor:'Ignacio', texto: $scope.mensaje});
+        if(!(angular.equals($scope.mensaje,undefined))){
+         $scope.mensajes.push({escritor:'Ignacio', texto: ': '+$scope.mensaje});
+        }else{
+         $scope.mensajes.push({escritor:'Ignacio', texto: ': no has escrito nada'});
+        }
     };
 
     $scope.aparece = function(){

@@ -31,18 +31,19 @@
       </ion-header-bar>
       <ion-content>
           <h1>Prueba</h1>
-          <button class="button button-balanced" on-tap="aparece()">
-          Aparece
-          </button>
-          <button class="button button-assertive" on-tap="dondeEstoy()">
+
+          <button class="button button-assertive donde-estoy" on-tap="dondeEstoy()">
           &#xBF;D&#xF3;nde estoy?
           </button>
-          <div class="contenido" ng-repeat="mensaje in mensajes">{{mensaje.escritor}} : {{mensaje.texto}}</div>
-
+          <div class="contenido" ng-repeat="mensaje in mensajes">{{mensaje.escritor}}{{mensaje.texto}}</div>
       </ion-content>
-      <ion-footer-bar class="bar-assertive" ng-show="estado">
-                   <div class="icono-e-input"><i class="ion-android-happy"></i></div><input class="input-para-escribr" type="text" ng-model="mensaje">
-                   <div class="papel" on-tap="esconde()"><i class="ion-paper-airplane"></i></div>
+      <ion-footer-bar class="bar-assertive">
+            <button class="button button-assertive boton-opciones" on-tap="aparece()" ng-hide="estado">+</button>
+            <div class="barra-de-texto" ng-show="estado">
+            <div class="icono col-3"><i class="ion-android-happy cara-feliz"></i></div>
+            <div class="input col-3"><input class="input-text" type="text" ng-model="mensaje"></div>
+            <div class="icono col-3" on-tap="esconde()"><i class="ion-paper-airplane avion-papel"></i></div>
+            </div>
          </ion-footer-bar>
     </ion-pane>
   </body>
